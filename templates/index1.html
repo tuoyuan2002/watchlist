@@ -1,0 +1,32 @@
+<!DOCTYPE html> <!-- 声明文档类型为HTML，这是所有HTML文档的开头 -->
+<html lang="en"> <!-- 定义HTML文档的根元素，lang属性指定文档的主要语言为英文 -->
+<head> <!-- head元素包含了文档的元数据，如文档的标题、字符集等 -->
+    <meta charset="utf-8"> <!-- meta元素定义了文档的元数据，charset属性指定字符编码为UTF-8，这是一种能够表示世界上大多数语言的字符编码 -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}"> <!-- link元素定义了文档的链接，rel属性指定链接类型为icon，href属性指定链接的目标 -->
+    <title>{{ user.name }}'s Watchlist</title> <!-- title元素定义了浏览器工具栏的标题，以及在收藏夹中显示的标题。这里使用模板语法{{ name }}来插入变量name -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css"> <!-- link元素定义了文档的链接，rel属性指定链接类型为stylesheet，href属性指定链接的目标 -->
+</head> <!-- head元素的结束 -->
+<body>
+    <h2>
+        <img alt="Avatar" class="avatar" src="{{ url_for('static', filename='images/avatar.png') }}">
+        {{ user.name }}'s Watchlist
+    </h2>
+    {# 使用 length 过滤器获取 movies 变量的长度 #}
+    <p>{{ movies|length }} Titles</p>
+    <ul class="movie-list">
+        {% for movie in movies %}  {# 迭代 movies 变量 #}
+        <li>{{ movie.title }} - {{ movie.year }}</li>  {# 等同于 movie['title'] #}
+        {% endfor %}  {# 使用 endfor 标签结束 for 语句 #}
+    </ul>
+    <img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/totoro.gif') }}">
+    <footer>
+        <!-- 这是一个HTML代码片段，用于显示版权信息。
+            <small>标签用于将文本设置为较小的大小。
+            &copy; 是HTML实体，表示版权符号©。
+            <a href="http://helloflask.com/book/3">HelloFlask</a> 是一个超链接，
+            指向指定的URL，用户可以点击它跳转到该页面。
+        -->
+        <small>&copy; 2018 <a href="http://helloflask.com/book/3">HelloFlask</a></small>
+    </footer>
+</body>
+</html>

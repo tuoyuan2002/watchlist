@@ -92,8 +92,26 @@ for _ in range(20):
     movies_list.append(movie)
 
 # 路由部分
+# 模板上下文处理函数
+@app.context_processor
+def inject_user():
+    user = User.query.first()
+    return dict(user=user)
+
+# 404 错误处理函数
+@app.errorhandler(404)
+def page_not_found(e):
+    # 默认返回200状态码，可以修改为404
+    return render_template('404.html'), 404
+
+
 @app.route('/')
 def index():
+    movies = Movie.query.all()
+    return render_template('index.html', movies=movies)
+
+@app.route('/3')
+def index3():
     user = User.query.first()  # 读取用户记录
     movies = Movie.query.all()  # 读取所有电影记录
     return render_template('index.html', user=user, movies=movies)
