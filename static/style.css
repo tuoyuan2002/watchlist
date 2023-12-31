@@ -1,0 +1,67 @@
+/* 页面整体 */
+body {
+    /* 将页面左右边距设置为自动，使页面在屏幕中居中显示 */
+    margin: auto;
+    /* 设置页面最大宽度为580像素 */
+    max-width: 580px;
+    /* 设置字体大小为14像素 */
+    font-size: 14px;
+    /* 设置字体为Helvetica，如果不可用则设置为Arial，如果还不可用则设置为sans-serif字体 */
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/* 页脚 */
+footer {
+    /* 设置文字颜色为#888，即深灰色 */
+    color: #888;
+    /* 设置页脚距离页面顶部的边距为15像素 */
+    margin-top: 15px;
+    /* 设置文字居中对齐 */
+    text-align: center;
+    /* 设置内边距为10像素 */
+    padding: 10px;
+}
+
+/* 头像 */
+.avatar {
+    /* 设置头像宽度为40像素 */
+    width: 40px;
+}
+
+/* 电影列表 */
+.movie-list {
+    /* 设置列表样式为无样式，即无前缀点和间隔 */
+    list-style-type: none;
+    /* 设置内边距为0 */
+    padding: 0;
+    /* 设置列表项之间距离为10像素 */
+    margin-bottom: 10px;
+    /* 设置阴影效果，偏移2像素，模糊半径5像素，颜色为黑色，透明度为0.16 */
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.movie-list li {
+    /* 设置内边距为12像素，左右方向为24像素 */
+    padding: 12px 24px;
+    /* 设置底部边框为1像素宽的实线，颜色为#ddd，即浅灰色 */
+    border-bottom: 1px solid #ddd;
+}
+
+.movie-list li:last-child {
+    /* 移除最后一个列表项的底部边框 */
+    border-bottom:none;
+}
+
+.movie-list li:hover {
+    /* 当鼠标悬停在列表项上时，设置背景颜色为#f8f9fa，即浅蓝色 */
+    background-color: #f8faf8;
+}
+
+/* 龙猫图片 */
+.totoro {
+    /* 将图片设置为块级元素，并居中显示 */
+    display: block;
+    margin: 0 auto;
+    /* 设置图片高度为100像素 */
+    height: 100px;
+}
