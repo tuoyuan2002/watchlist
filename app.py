@@ -139,10 +139,9 @@ def page_not_found(e):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':  # 判断是否是 POST 请求
-        if not current_user.is_authenticated:
-            flash("You can't create item without login.")  # 显示错误提示
-            return redirect(url_for('index'))  # 重定向到主页
-        # 获取表单数据
+        # if not current_user.is_authenticated:
+        #     return redirect(url_for('index'))  # 重定向到主页
+        # 获取表单数据 
         title = request.form.get('title')  # 传入表单对应输入字段的 name 值
         year = request.form.get('year')
         # 验证数据
@@ -158,47 +157,6 @@ def index():
 
     movies = Movie.query.all()
     return render_template('index.html', movies=movies)
-
-@app.route('/4', methods=['GET', 'POST'])
-def index4():
-    movies = Movie.query.all()
-    return render_template('index.html', movies=movies)
-
-@app.route('/3')
-def index3():
-    user = User.query.first()  # 读取用户记录
-    movies = Movie.query.all()  # 读取所有电影记录
-    return render_template('index.html', user=user, movies=movies)
-
-@app.route('/1')
-def hello():
-    # 返回一个字符串，包含HTML的h1标签和img标签
-    return '<h1>Hello Totoro!</h1><img src="http://helloflask.com/totoro.gif">'
-
-@app.route('/index')
-@app.route('/home')
-def hello2():
-    # 返回欢迎信息
-    return 'Welcome to My Watchlist!'
-
-@app.route('/user/<name>')
-def user_page(name):
-    # 将name进行转义，避免特殊字符引起的错误
-    name = escape(name)
-    # 返回格式化字符串，将转义后的name插入到字符串中
-    return f'User: {name}'
-
-@app.route('/test')
-def test_url_for():
-    # 下面是一些调用示例（请访问 http://localhost:5000/test 后在命令行窗口查看输出的 URL）：
-    print(url_for('hello'))  # 生成 hello 视图函数对应的 URL，将会输出：/
-    # 注意下面两个调用是如何生成包含 URL 变量的 URL 的
-    print(url_for('user_page', name='greyli'))  # 输出：/user/greyli
-    print(url_for('user_page', name='peter'))  # 输出：/user/peter
-    print(url_for('test_url_for'))  # 输出：/test
-    # 下面这个调用传入了多余的关键字参数，它们会被作为查询字符串附加到 URL 后面。
-    print(url_for('test_url_for', num=2))  # 输出：/test?num=2
-    return 'Test page'
 
 # 编辑电影条目
 @app.route('/movie/edit/<int:movie_id>', methods=['GET', 'POST'])
