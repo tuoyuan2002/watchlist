@@ -25,7 +25,8 @@ app = Flask(__name__)
 # 配置部分
 prefix = 'sqlite:///' # 数据库前缀
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev')
-app.config['SQLALCHEMY_DATABASE_URI'] = prefix + os.path.join(os.path.dirname(app.root_path), os.getenv('DATABASE_FILE', 'data.db'))
+app.config['SQLALCHEMY_DATABASE_URI'] = prefix + os.path.join(app.root_path, os.getenv('DATABASE_FILE', 'data.db'))
+print(app.config['SQLALCHEMY_DATABASE_URI'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # 关闭对模型修改的监控
 
 # 数据库实例
@@ -78,6 +79,9 @@ def forge():
 
     # 全局的两个变量移动到这个函数内
     name = 'Tuoyuan'
+    username = 'tuoyuan'
+    user = User(name=name, username=username)
+    user.set_password('123')
 
     # 创建 Faker 对象，用于生成假数据
     fake = Faker()
@@ -92,7 +96,6 @@ def forge():
         }
         movies.append(movie)
 
-    user = User(name=name)
     db.session.add(user)
     for m in movies:
         movie = Movie(title=m['title'], year=m['year'])
